@@ -1,0 +1,22 @@
+Sentiment Analysis with R
+- Natural Language Processing
+-Sentiment Analysis (aka opinion mining or emotion  AI) refers to the use of NLP, text analysis, computatinal linguistics, and biometric to systematically identify, extract quantify, and study afective states and subjective information. 
+
+Workflow
+1. Data Collection
+2. Text Preparation - (Data Cleaning)
+3. Sentiment Detection - Feature Selection
+4. Sentiment Classification - Modellling
+5. Presentation of output
+
+Methods
+1. Supervised
+2. Unsupervised/Rule-based Approaches (e.g lexicon based)
+3. Hybrid (Combination of 1 & 2)
+
+Analysis can be on:
+ 	Document Level
+	Sentence Level
+	Aspect based (different perspective to same entitiy e.g product 		         review)
+
+U 
