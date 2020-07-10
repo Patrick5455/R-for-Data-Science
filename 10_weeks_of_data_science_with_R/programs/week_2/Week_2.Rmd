@@ -5,10 +5,18 @@ date: "7/10/2020"
 output: html_document
 ---
 
-L0ading data into R without using file.chose()
+Loading data into R without using file.chose()
 In this case, the data must be in the same path as this .Rmd file
 ```{r}
-
-who_suicide <- read.table('~/Documents/Semicolon/R/10_weeks_of_data_science_with_R/datasets/data/who_suicide_statistics.csv',sep = ',', header = T)
-
+who_suicide <- read.table('~/Documents/Semicolon/R/10_weeks_of_data_science_with_R/datasets/data/who_suicide_statistics.csv',sep = ",", header =T)
+head(who_suicide)
 ```
+```{r}
+auto <- read.table('~/Documents/Semicolon/R/10_weeks_of_data_science_with_R/datasets/data/auto.txt',sep = ",", header =T)
+head(auto)
+```
+```{r}
+potato <- read.table('~/Documents/Semicolon/R/10_weeks_of_data_science_with_R/datasets/data/potatoes.txt', sep="\t", header=T)
+head(potato)
+```
+`Note:` read.csv2() is used to read only comma separated data and does not use the parameter sep
