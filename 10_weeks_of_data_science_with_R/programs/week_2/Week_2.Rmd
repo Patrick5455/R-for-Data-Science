@@ -73,8 +73,27 @@ tables
 > we can use the dbReadTable() function to import data from the database tables.
 
 ```{r}
-user <- dbReadTable(connect, "users")
+user<-dbReadTable(connect, "users")
 user
 ```
 
+> writing databse object to files
+
+```{r}
+write.csv(user, file='user.csv')
+```
+
+#### Importing data from statistical packages
+
+
+#### Baisc Visualizations in R
+
+> Scatter PLots
+>> Calculating correlation `NB:` house data was chosen
+
+```{r}
+dt<-read.csv(file.choose(), header = T)
+corr<-cor(dt$SQFT, dt$Price)
+corr
+```
 
