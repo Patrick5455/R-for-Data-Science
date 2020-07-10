@@ -5,6 +5,7 @@ date: "7/10/2020"
 output: html_document
 ---
 
+## Loading Data into Files
 Loading data into R without using file.chose()
 In this case, the data must be in the same path as this .Rmd file
 ```{r}
@@ -19,4 +20,38 @@ head(auto)
 potato <- read.table('~/Documents/Semicolon/R/10_weeks_of_data_science_with_R/datasets/data/potatoes.txt', sep="\t", header=T)
 head(potato)
 ```
+#### read.csv2() for reading csv files
 `Note:` read.csv2() is used to read only comma separated data and does not use the parameter sep
+
+```{r}
+other_csv <- read.csv2("~/Documents/Semicolon/R/10_weeks_of_data_science_with_R/datasets/data/who_suicide_statistics_semi.csv", header = T)
+
+head(other_csv)
+```
+#### using read.delim() for tsv files
+`NB:` read.delim() works for tab separated files
+```{r}
+delim <- read.delim('~/Documents/Semicolon/R/10_weeks_of_data_science_with_R/datasets/data/potatoes.txt', header=F)
+head(delim)
+```
+#### package readr
+a package called readr() is 10x faster but it does not come default with R. It has been installed unlike the base functions
+Base functions for reading file include:
+- read.delim()
+- read.table()
+-read.csV2()
+
+#### Importing excel files 
+> read_excel() is not a base R function. It has to be imported into r as a package.
+> `NB:` The col_names here also refers to header as in other file reader functions
+> sheet paramter refers to the shhet we want to load. We cannot load more than one sheet at a time
+
+```{r}
+library(readxl)
+```
+```{r}
+sht1 <-read_excel('~/Documents/Semicolon/R/10_weeks_of_data_science_with_R/datasets/data/Employees.xlsx', col_names = T, sheet = 1)
+head(sht1)
+```
+
+
