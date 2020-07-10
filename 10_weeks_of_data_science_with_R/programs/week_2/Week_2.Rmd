@@ -132,7 +132,7 @@ dt$Status <- as.factor(dt$Status)
 ```{r}
 house_box<-boxplot(dt$Price~dt$Status, xlab = "Status", ylab = "Price", main="House Prices", las=T)
 house_box<-boxplot(Price~Status,data = dt, xlab = "Status", ylab = "Price",  main="House Prices")
-
+ 
 # OR
 
 #house_box
