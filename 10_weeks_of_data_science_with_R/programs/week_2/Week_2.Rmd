@@ -53,5 +53,28 @@ library(readxl)
 sht1 <-read_excel('~/Documents/Semicolon/R/10_weeks_of_data_science_with_R/datasets/data/Employees.xlsx', col_names = T, sheet = 1)
 head(sht1)
 ```
+#### Importing data from Databases
+```{r}
+library(DBI)
+library(RMySQL)
+```
+
+```{r}
+host =  'courses.csrrinzqubik.us-east-1.rds.amazonaws.com' 
+connect <- dbConnect(RMySQL::MySQL(), dbname = "tweater",
+host = host, port = 3306, user = "student", password ="datacamp")
+```
+> listing tables from databases
+
+```{r}
+tables <- dbListTables(connect)
+tables
+```
+> we can use the dbReadTable() function to import data from the database tables.
+
+```{r}
+user <- dbReadTable(connect, "users")
+user
+```
 
 
