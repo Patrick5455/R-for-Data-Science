@@ -96,4 +96,15 @@ dt<-read.csv(file.choose(), header = T)
 corr<-cor(dt$SQFT, dt$Price)
 corr
 ```
+> Histogram
+
+```{r}
+hist(dt$Price, main = "Histogram of Price", xlab = "Price of House")
+```
+> Using log to normalise a distribution. The eseence of the log normalisation is for modelling strictly . 
+>>`NB`: Interpretationn should never be based on the result of log normalisation
+
+```{r}
+hist(log(dt$Price), main = "Histogram of Price", xlab = "Price of House")
+```
 
