@@ -96,7 +96,17 @@ dt<-read.csv(file.choose(), header = T)
 corr<-cor(dt$SQFT, dt$Price)
 corr
 ```
-> Histogram
+> To check the general information/structure of your data, you use str()
+
+```{r}
+str(dt)
+```
+
+
+
+##### Histogram
+
+> Used to plot the relationship between two different numeric data
 
 ```{r}
 hist(dt$Price, main = "Histogram of Price", xlab = "Price of House")
@@ -106,5 +116,29 @@ hist(dt$Price, main = "Histogram of Price", xlab = "Price of House")
 
 ```{r}
 hist(log(dt$Price), main = "Histogram of Price", xlab = "Price of House")
+```
+#### Boxplot
+> Used to plot the relationship between a numeric varibale and a categorical variable
+>> Ensure you are plotting boxplots with no more than 5 categorical variables
+>> We have to convert LOcation  or Status features to Factor form Character
+
+```{r}
+dt$Location <- as.factor(dt$Location)
+dt$Status <- as.factor(dt$Status)
+```
+
+
+
+```{r}
+house_box<-boxplot(dt$Price~dt$Status, xlab = "Status", ylab = "Price", main="House Prices", las=T)
+house_box<-boxplot(Price~Status,data = dt, xlab = "Status", ylab = "Price",  main="House Prices")
+
+# OR
+
+#house_box
+```
+
+```{r}
+
 ```
 
