@@ -1,0 +1,113 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+```{r}
+library(readxl)
+#library()
+dta<-read_excel("data/mbta.xlsx", skip = 1,range=cell_cols(2:60))
+View(dta)
+```
+
+This is used to unpivot row header to columns
+```{r}
+library(dplyr)
+library(tidyr)
+dta_tidy <-dta%>% gather(`2007-01`:`2011-10`, 
+                          key="year", value="passengers")
+View(dta_tidy)
+```
+
+ separate into separate columns key:value pairs
+```{r}
+dta_tidy <- dta_tidy %>% separate(year, into = c("year", "month"))
+View(dta_tidy)
+```
+
+
+```{r}
+dta_tidy<-dta_tidy%>%spread(mode, passengers)
+View(dta_tidy)
+```
+
+subset rows
+```{r}
+dta_tidy <- dta_tidy %>% .[,c(1:2,6:8)]
+```
+
+```{r}
+dta_tidy
+```
+install hflights datasets from R repository
+```{r}
+library(hflights)
+data("hflights")
+View(hflights)
+```
+
+Using the filter function
+```{r}
+filter(hflights, Year==2011, Month==2)
+```
+```{r}
+fil <-filter(hflights, Dest%in%c("FLL", "IAH"))
+fil
+```
+```{r}
+dist <- filter(hflights, between(Distance, 224,944))[,11:16]
+dist
+```
+### Tasks
+
+
+1. All flights in April 2011
+
+```{r}
+april_dept<-filter(hflights,Year==2011, Month==4)
+april_dept
+```
+2. All flights in AA & WN
+```{r}
+aw_flights = filter(hflights, UniqueCarrier%in%c("AA", "WN"))
+aw_flights
+```
+SOrt values
+By default, arrange sort vlaues ascending order. This is why we have to use desc
+
+```{r}
+sort_flight = arrange(hflights, desc(hflights$ArrDelay))
+sort_flight
+```
+
+OR
+```{r}
+sort_flight = arrange(hflights, desc(ArrDelay))
+sort_flight
+```
+using select function
+the comma is needed so as to return only 4 rows
+```{r}
+select_rows <- select(hflights, Year, Month, FlightNum, AirTime)[1:4,]
+select_rows
+```
+using Select helper functions
+```{r}
+vars <-c("Year", "Month", "DayofMonth", "DayofMonth", "ArrTIme")
+s_1 <- select(hflights, one_of(vars))
+head(s_1)[1:6,]
+```
+Using the mutate function
+```{r}
+hflights%>%
+  select(ends_with("Delay"), Distance, AirTime)%>%
+  mutate(time_gain = ArrDelay - DepDelay,
+         speed = Distance/AirTime*60)
+```
+
+
+```{r}
+hflights %>%
+  ggroup_by(Yeear, Month, DayofMonth)%>%
+  summarise(delay=mean(DepDelay, na.rm = TRUE))
+```
+
